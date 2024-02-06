@@ -1,0 +1,39 @@
+{% extends 'aplicacion/home.html' %}
+{% block titulo  %}
+    <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline"> Contacto:</span></h2>
+{% endblock titulo  %}
+{% block contenido %}
+<h1 style="text-align: center;">Formulario</h1>
+<form action="" method="post">
+    {% csrf_token %}
+  <table class="table table-striped">
+    <thead>
+        <th>ID:</th>
+        <th>Cargo:</th>
+        <th>Institución:</th>
+        <th>Fecha de Inicio:</th>
+        <th>Fecha de Egreso:</th>
+        <th>Descripcion:</th>
+        <th>Contacto:</th>
+        <th>Email:</th>
+        
+    </thead>
+ 
+  <tbody>
+    {%for p in experiencia%}
+    <tr>
+        <td>{{p.id}} </td>
+        <td>{{p.cargo}} </td>
+        
+        <td>{{p.institucion}} </td>
+        <td>{{p.fechaDeInicio}} </td>
+        <td>{{p.fechaDeEgreso}} </td>
+        <td>{{p.descripcion}} </td>
+        <td>{{p.contacto}} </td>
+        <td>{{p.email}} </td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+</form>
+{% endblock contenido %}
