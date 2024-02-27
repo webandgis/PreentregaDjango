@@ -1,17 +1,17 @@
 {% extends 'aplicacion/home.html' %}
 {% block titulo  %}
-    <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline"> Contacto:</span></h2>
+    <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline"> Proyectos:</span></h2>
 {% endblock titulo  %}
 {% block contenido %}
 
 <table>
   <tr>
-    <td width="200"> <h2>Experiencia</h2>
+    <td width="200"> <h2>Portafolio</h2>
     </td>
     <td>
       <td>
         <a
-        href="{% url 'experienciaCrear' %}"
+        href="{% url 'portafolio_crear' %}"
         class="btn btn-primary btn-sm"
         ><i class="fa fa-plus fa-lg" title="Crear"> </i>
         </a>
@@ -21,44 +21,35 @@
   </tr>
 </table>
 
-<h1 style="text-align: center;">Formulario</h1>
+<h1 style="text-align: center;">Portafolio</h1>
 <form action="" method="post">
     {% csrf_token %}
   <table class="table table-striped">
     <thead>
-        <th>ID:</th>
-        <th>Cargo:</th>
-        <th>Institución:</th>
-        <th>Fecha de Inicio:</th>
-        <th>Fecha de Egreso:</th>
-        <th>Descripcion:</th>
-        <th>Contacto:</th>
-        <th>Email:</th>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Lenguaje</th>
+        <th>Descripción</th>
         <th>Acciones</th>
         
     </thead>
  
   <tbody>
-    {%for p in experiencia%}
+    {%for p in portafolio_list%}
     <tr>
-        <td>{{p.id}} </td>
-        <td>{{p.cargo}} </td>
-        
-        <td>{{p.institucion}} </td>
-        <td>{{p.fechaDeInicio}} </td>
-        <td>{{p.fechaDeEgreso}} </td>
-        <td>{{p.descripcion}} </td>
-        <td>{{p.contacto}} </td>
-        <td>{{p.email}} </td>
+        <td> {{p.id}} </td>
+        <td> {{p.nombre}} </td>
+        <td>  {{p.lenguaje}} </td>
+        <td> {{p.descripcion}} </td>
         <td>
           <a
-            href="{% url 'experienciaActualizar' p.id %}"
+            href="{% url 'portafolio_update' p.id %}"
             class="btn btn-primary"
             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
             ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
           </a>
           <a
-            href="{% url 'experienciaBorrar' p.id %}"
+            href="{% url 'portafolio_delete' p.id %}"
             class="btn btn-danger"
             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
             ><i class="fa fa-trash fa-sm" title="Delete Record"></i>

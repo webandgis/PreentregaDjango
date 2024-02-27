@@ -13,8 +13,11 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Font Awsome-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     </head>
@@ -27,10 +30,39 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href="#!">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{%url 'home'%}">Home</a></li>
+
+                            {% if user.is_authenticated %}
+
+
                             <li class="nav-item"><a class="nav-link" href="{%url 'experiencias'%}">Experiencia</a></li>
                             <li class="nav-item"><a class="nav-link" href="{%url 'portafolios'%}">Portafolio</a></li>
                             <li class="nav-item"><a class="nav-link" href="{%url 'contactos'%}">Contacto</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{%url 'contactos'%}" style="color:green">Hola {{user.username}}!</a></li>
+                            <div class="text-center">
+                                <a  href="{% url 'agregarAvatar' %}" ><img src="{{ request.session.avatar }}" height="40px" weight="40px"/></a>
+                            </div>  
+                            <li class="nav-item"><a class="btn btn-warning" href="{%url 'editarPerfil'%}">Update Profile</a></li>
+                            
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button class="btn btn-danger" type="submit">logout</button>
+                            </form>
+                            
+                            
+                            {%else%}
+                            
+
+                            <li class="nav-item"><a class="btn btn-primary" href="{%url 'login'%}">Login</a></li>
+                            <li class="nav-item"><a class="btn btn-secondary" href="{%url 'register'%}">Register</a></li>
+                            
+                          
+
+                            {% endif  %}
+                            
+                            
+                            
+                            
                         </ul>
                     </div>
                 </div>
@@ -187,7 +219,7 @@
                             <div class="text-center my-5">
                                 <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">Sobre mí</span></h2>
                                 <p class="lead fw-light mb-4">Mi nombre es Girmar Laucho y mi objetivo es ayudarte a visualizar tus datos de una forma moderna</p>
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dolorum itaque qui unde quisquam consequatur autem. Eveniet quasi nobis aliquid cumque officiis sed rem iure ipsa! Praesentium ratione atque dolorem?</p>
+                                <p class="text-muted">Estoy estudianto python como una herramienta para aplicar en el análisis geográfico y creación de herramientas web. Esta aplicación es para mostrar mi experiencia laboral mediante un portafolio web</p>
                                 <div class="d-flex justify-content-center fs-2 gap-4">
                                     <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
                                     <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
@@ -199,7 +231,7 @@
                 </div>
 
                 {% block titulo  %}
-                <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">Herramientas</span></h2>
+                <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline"></span></h2>
                 {% endblock titulo  %}
 
                 {% block contenido %}
